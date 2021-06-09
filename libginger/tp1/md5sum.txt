@@ -1,0 +1,15 @@
+de7d4fc89aa039642b57406706771da2  ./Makefile.tp1
+2db952c8a2eeb2a3d8e8c0568e3a1c89  ./main.c
+39fb48c6799023bb29460b204c31cb2d  ./md5sum.txt
+612939765c52b6af160e396e28df1149  ./input.txt
+013b76e3ec428ffda5e197aed7420e9d  ./input5.txt
+d41d8cd98f00b204e9800998ecf8427e  ./test.gif
+cc44b52a4a8b901bc74f8c789ffe548a  ./it1
+f62d151b927660c91651cdecd0e3907f  ./input2.txt
+6b88c11935300bc2fb6707017693536f  ./test.ps.org
+f3d44b06ed291a47e8ea94edd3928f4b  ./test.gif.old
+cb36b7411e299fef902fd59c14fa0492  ./input3.txt
+0f0120ea632fe321c43191440cf981e7  ./input4.txt
+cc6eefcf1ad335f6e9122542c3a22efd  ./test.svg
+229819d3011360ac83c5a7e302ae09ba  ./it2
+48aa77dc4e99f7b0f76a8be41dab1f9e  ./input6.txt

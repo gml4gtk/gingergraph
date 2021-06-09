@@ -1,0 +1,4 @@
+#!/bin/sh
+#./tp5 aai.dot 1>logfile1.txt 2>logfile2.txt
+./tp5 ph.dot 1>logfile1.txt 2>logfile2.txt
+

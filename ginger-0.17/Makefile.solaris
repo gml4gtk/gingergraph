@@ -1,0 +1,220 @@
+# $Id: Makefile.solaris,v 1.17 1996/05/24 09:09:10 lupus Exp lupus $
+
+# Used for Sun Solaris on our local network, IESD
+
+# Edit paths here (if required): =============================== 
+
+# Elk libraries
+#   To build Ginger without the Elk library, leave the following
+#   ELK-definitions empty (and remember to set USE_SCHEME to 0 in config.h).
+
+#ELK_INC_PATH = -I/user/lupus/Ginger/Elk2/include/
+#ELK_LIBS     = -lelf -ldl
+#ELK_OBJS     = /user/lupus/Ginger/Elk2/lib/module.o
+ELK_INC_PATH =
+ELK_LIBS     =
+ELK_OBJS     =
+
+# XPM library 
+#
+#   To build Ginger without the XPM library, leave the following
+#   XPM-definitions empty (and remember to set USE_XPM_LIB to 0 in config.h).
+
+#XPM_LIB      = -lXpm
+#XPM_INC_PATH = -I/pack/xpm/include
+#XPM_LIB_PATH = -L/pack/xpm/lib/ -R/pack/xpm/lib/
+XPM_LIB      =
+XPM_INC_PATH =
+XPM_LIB_PATH =
+
+# General paths and flags 
+
+INCL_PATH  =-I/usr/openwin/share/include $(XPM_INC_PATH) $(ELK_INC_PATH)
+LIB_PATH   =-L/usr/openwin/lib $(XPM_LIB_PATH)
+LIB_RUNTIME=-R/usr/openwin/lib
+#CFLAG      =-DSYSV -DGINGER_HEAP_K_BYTES=10000
+CFLAG      =-DSYSV
+
+CC=gcc 
+LIBS=$(XPM_LIB) -lXaw -lXmu -lXt -lXext -lX11 $(ELK_LIBS) -lm 
+
+# ============================================================== 
+
+GINGER_OBJ=graph.o node.o edge.o graphDisplay.o graphIO.o \
+    rectangles.o mainWindow.o icon.o fileSelector.o \
+    Directory.o main.o clist.o allocmem.o str.o menu.o \
+    menuDispatch.o symtable.o ginger.tab.o lex.yy.o \
+    PostScript.o focus.o graphBuffer.o \
+    helpWindow.o hyper.o notify.o options.o stringstack.o \
+    version.o message.o colormap.o nodeSelection.o nodeSelectionWindow.o \
+    edgeSelection.o edgeSelectionWindow.o \
+    edgeAttributeWindow.o nodeAttributeWindow.o graphInteraction.o \
+    arrayLayoutParameterWindow.o circularLayoutParameterWindow.o \
+    arrayLayout.o circularLayout.o treeLayout.o treeLayoutParameterWindow.o \
+    matrix.o hotspot.o actions.o dragRectangle.o promptWindow.o \
+    elkInterface.o elkGraph.o elkUpdate.o
+
+OBJ=$(GINGER_OBJ) $(ELK_OBJS)
+
+ginger: $(OBJ) 
+	$(CC) $(LIB_PATH) $(LIB_RUNTIME) $(OBJ) -o ginger $(LIBS)
+
+clean:
+	rm *.o
+
+depend:
+	echo 'ok'
+
+graph.o : graph.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c graph.c
+
+node.o : node.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c node.c
+
+edge.o : edge.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c edge.c
+
+graphDisplay.o : graphDisplay.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c graphDisplay.c
+
+graphIO.o : graphIO.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c graphIO.c
+
+rectangles.o : rectangles.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c rectangles.c
+
+mainWindow.o : mainWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c mainWindow.c
+
+icon.o : icon.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c icon.c
+
+fileSelector.o : fileSelector.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c fileSelector.c
+
+Directory.o : Directory.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c Directory.c
+
+main.o : main.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c main.c
+
+clist.o : clist.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c clist.c
+
+allocmem.o : allocmem.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c allocmem.c
+
+str.o : str.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c str.c
+
+menu.o : menu.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c menu.c
+
+menuDispatch.o : menuDispatch.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c menuDispatch.c
+
+symtable.o : symtable.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c symtable.c
+
+ginger.tab.o : ginger.tab.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c ginger.tab.c
+
+lex.yy.o : lex.yy.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c lex.yy.c
+
+PostScript.o: PostScript.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c PostScript.c
+
+graphBuffer.o : graphBuffer.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c graphBuffer.c
+
+focus.o : focus.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c focus.c
+
+helpWindow.o : helpWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c helpWindow.c
+
+hyper.o : hyper.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c hyper.c
+
+stringstack.o : stringstack.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c stringstack.c
+
+options.o : options.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c options.c
+
+notify.o : notify.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c notify.c
+
+version.o : version.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c version.c
+
+message.o : message.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c message.c
+
+colormap.o : colormap.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c colormap.c
+
+nodeSelection.o : nodeSelection.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c nodeSelection.c
+
+nodeSelectionWindow.o : nodeSelectionWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c nodeSelectionWindow.c
+
+edgeSelection.o : edgeSelection.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c edgeSelection.c
+
+edgeSelectionWindow.o : edgeSelectionWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c edgeSelectionWindow.c
+
+graphInteraction.o : graphInteraction.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c graphInteraction.c
+
+edgeAttributeWindow.o : edgeAttributeWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c edgeAttributeWindow.c
+
+nodeAttributeWindow.o : nodeAttributeWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c nodeAttributeWindow.c
+
+arrayLayoutParameterWindow.o : arrayLayoutParameterWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c arrayLayoutParameterWindow.c
+
+circularLayoutParameterWindow.o : circularLayoutParameterWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c circularLayoutParameterWindow.c
+
+arrayLayout.o : arrayLayout.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c arrayLayout.c
+
+circularLayout.o : circularLayout.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c circularLayout.c
+
+treeLayout.o : treeLayout.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c treeLayout.c
+
+treeLayoutParameterWindow.o : treeLayoutParameterWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c treeLayoutParameterWindow.c
+
+matrix.o : matrix.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c matrix.c
+
+hotspot.o : hotspot.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c hotspot.c
+
+actions.o : actions.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c actions.c
+
+dragRectangle.o : dragRectangle.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c dragRectangle.c
+
+promptWindow.o : promptWindow.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c promptWindow.c
+
+elkInterface.o : elkInterface.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c elkInterface.c
+
+elkGraph.o: elkGraph.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c elkGraph.c
+
+elkUpdate.o: elkUpdate.c
+	$(CC) $(CFLAG) $(INCL_PATH) -c elkUpdate.c
+

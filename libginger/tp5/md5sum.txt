@@ -1,0 +1,13 @@
+c96e714f09f0565adde72f9225fe9ec0  ./it4
+66b3af2f720d6536602a1d4e8c26fdfd  ./input.txt
+cc44b52a4a8b901bc74f8c789ffe548a  ./it1
+f257120f360717a4f906c1c2358ceff2  ./it2
+878819d5bcb57428b2f4a27ff3167d27  ./main.c
+052369b888a064e13dd423bd88d99e2c  ./aai.dot
+fbe2a34147bef0c2369da3c8de918824  ./md5sum.txt
+90175aed9644c87f30fe6dab8af6db6d  ./test.gif
+8ba437033ba09ff705f82417998ce1d2  ./test.svg
+6c7383fc8d6dad3a18de1f9d57f49142  ./README
+41fbd13d2da33a6200205e656cc67ccb  ./Makefile.tp5
+4c152f88f44dbf2d009ae54fc8bc863d  ./ph.png
+71ce112faa6e9b7d8e1f28816f585e95  ./ph.dot

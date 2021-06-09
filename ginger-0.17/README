@@ -1,0 +1,25 @@
+ -------------------------------------------------------------------------
+     Ginger -- an INteractive Graph EditoR for the X Window System.
+                          COPYRIGHT (C) 1996 
+  Martin K. Molz (molz@iesd.auc.dk) & Niels C. Larsen (lupus@iesd.auc.dk)
+                      Aalborg University, Denmark.
+ -------------------------------------------------------------------------
+
+See the file "COPYRIGHT" for the terms for distribution and warranty
+of this program.
+
+See the file "INSTALL" for details on compiling and installing Ginger.
+If you have any problems with the compilation or installation of
+Ginger, please feel free to ask lupus@iesd.auc.dk or molz@iesd.auc.dk.
+
+The file "hyperhelp" describes the use of the program. It is a hypertext,
+and is best read from within Ginger using the 'help' function.
+
+We appreciate if you send us a brief note if you like the program or
+have suggestions for improvement. E-mail to the above e-mail addresses
+(lupus@iesd.auc.dk, molz@iesd.auc.dk).  You can also check out the
+Ginger homepage on the World Wide Web for the latest news about the
+Ginger project:
+
+          http://www.iesd.auc.dk/~normark/Ginger/ginger.html
+

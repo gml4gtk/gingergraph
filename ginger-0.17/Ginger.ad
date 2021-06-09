@@ -1,0 +1,53 @@
+! $Id: Ginger.ad,v 1.12 1996/03/27 16:42:01 lupus Exp $
+
+! Application-defaults file for Ginger
+
+! Color settings:
+Ginger*Command*background: plum4
+Ginger*Command*foreground: white
+Ginger*Toggle*background: plum4
+Ginger*Toggle*foreground: white
+Ginger*MenuButton*background: plum4
+Ginger*MenuButton*foreground: white
+Ginger*Scrollbar*foreground: black
+Ginger*Label.borderWidth: 0
+
+Ginger*nodeColor: navy
+!Ginger*edgeColor: darkseagreen
+Ginger*edgeColor: plum4
+Ginger*labelColor: black
+
+
+! Font settings:
+!Ginger*font: -misc-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso8859-1
+Ginger*font: -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+Ginger*helpWindowText*font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+Ginger*promptWindowText*font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+
+Ginger*Command*font: -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
+Ginger*Toggle*font: -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
+Ginger*MenuButton*font: -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
+
+Ginger*labelFont: -adobe-helvetica-medium-r-*-*-*-120-*-*-*-*-*-*
+
+Ginger*Text.Translations: #override \
+			<Key>Return: confirm_action()          \n\
+			<Key>KP_Enter: confirm_action()        \n\
+			<Key>Tab: next_action()                \n\
+			<Key>Down: next_action()               \n\
+			<Key>Up: prev_action()                 \n\
+			Ctrl<Key>Delete: delete-selection()    \n\
+			Ctrl<Key>BackSpace: delete-selection() \n\
+			:<Key>Delete: delete-next-character()  \n\
+			:<Key>Home: beginning-of-line()        \n\
+			:<Key>End:  end-of-line()              \n\
+			:<Btn3Down>:  here_action()
+
+Ginger*graphArea.Translations: #override \
+                 	<Btn1Down>  : selection-move-start()	\n\
+                 	<Btn1Motion>: selection-move-drag() 	\n\
+                 	Shift<Btn1Up>: selection-move-add-end()	\n\
+                 	<Btn1Up>    : selection-move-end()	\n\
+                  	<Btn2Down>  : hotspot-set()		\n\
+                  	<Btn2Motion>: hotspot-set()
+

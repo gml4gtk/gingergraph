@@ -1,0 +1,167 @@
+%%%% ps.c: postscriptinitialize(): 
+%!PS-Adobe-3.0
+%%Creator: Linux
+%%Title: WorldDomination
+%%BoundingBox: 75 540 131 746
+%%DocumentData: Clean8Bit
+%%Pages: 1
+%%EndComments
+%%BeginSetup
+/cm {72 2.54 div mul} def
+
+/Helvetica findfont
+  dup length dict begin 
+  {1 index /FID ne {def}{pop pop} ifelse} forall 
+  /Encoding ISOLatin1Encoding def 
+  currentdict 
+  end 
+/Helvetica-ISO exch definefont pop /Helvetica-ISO findfont 12 scalefont setfont
+
+/rectangle {   % x1 y1 x2 y2 rectangle -> 
+/y2 exch def
+/x2 exch def
+/y1 exch def
+/x1 exch def
+x1 y1 moveto
+x2 y1 lineto
+x2 y2 lineto
+x1 y2 lineto
+closepath
+} def
+
+/rhomb {   % x1 y1 halfwidth halfheight rhomb -> 
+/halfheight exch def
+/halfwidth  exch def
+/y1 exch def
+/x1 exch def
+x1 halfwidth sub y1 moveto
+x1 y1 halfheight add lineto
+x1 halfwidth add y1 lineto
+x1 y1 halfheight sub  lineto
+closepath
+} def
+
+/ellipsedict 8 dict def
+ellipsedict /mtrx matrix put
+
+/ellipse  % center_x center_y rad_x rad_y start_ang end_ang ellipse -> 
+ { ellipsedict begin
+    /endangle exch def
+    /startangle exch def
+    /yrad exch def
+    /xrad exch def
+    /y exch def
+    /x exch def
+    /savematrix mtrx currentmatrix def
+    x y translate
+    xrad yrad scale
+    0 0 1 startangle endangle arc
+    savematrix setmatrix
+  end
+ } def
+
+/arrowdict 14 dict def
+arrowdict begin
+ /mtrx matrix def
+end
+
+/arrow  % tailx taily tipx tipy headwidth headlength arrow -> 
+ { arrowdict begin
+    /headlength exch def
+    /halfheadthickness exch 2 div def
+    /tipy exch def
+    /tipx exch def
+    /taily exch def
+    /tailx exch def
+   
+    /dx tipx tailx sub def
+    /dy tipy taily sub def
+
+    /arrowlength dx dx mul dy dy mul add sqrt def
+    /angle dy dx atan def
+
+    /base arrowlength headlength sub def
+
+    /savematrix mtrx currentmatrix def
+
+    tailx taily translate
+    angle rotate
+
+    newpath
+    0 0 moveto
+    base 0 lineto
+    stroke
+
+    newpath
+    base halfheadthickness moveto
+    arrowlength 0 lineto
+    base halfheadthickness neg lineto
+    closepath
+    fill
+
+    savematrix setmatrix
+   end
+ } def
+
+%%EndSetup
+%%Page: 1 1
+
+%%%% ps.c: postscriptinitialize(end)
+%%%% ps.c: postscriptedge(): edge from node `1' to node `6' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptedge(): edge from node `1' to node `7' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptedge(): edge from node `2' to node `5' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptedge(): edge from node `2' to node `8' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptedge(): edge from node `3' to node `5' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptedge(): edge from node `3' to node `6' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptedge(): edge from node `4' to node `8' 
+%%%% ps.c: postscriptarrow(): edge from (28,793) to (28,793) direction 0 
+%%%% ps.c: postscriptarrow(): skipped because ((x1==x2) && (y1==y2)) 
+%%%% ps.c: postscriptnode(): node `1' 
+newpath
+77 694 78 693 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `2' 
+newpath
+77 594 78 593 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `3' 
+newpath
+77 644 78 643 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `4' 
+newpath
+77 544 78 543 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `5' 
+newpath
+127 644 128 643 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `6' 
+newpath
+127 694 128 693 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `7' 
+newpath
+127 744 128 743 rectangle
+stroke
+%%%% ps.c: postscriptnode(): node `8' 
+newpath
+127 594 128 593 rectangle
+stroke
+%%%% ps.c: postscriptend(): 
+showpage
+%%EOF
+
+%%%% ps.c: postscriptend(): 

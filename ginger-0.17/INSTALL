@@ -1,0 +1,73 @@
+----------------------------------------------------------------------
+To install Ginger
+----------------------------------------------------------------------
+
+1) Unpack the distribution files in some directory of your choice. 
+
+2) In the "Ginger/Src" directory, take a look at the Imakefile. 
+   If you don't have a working configuration of imake on your system, you
+   may be able to use the file Makefile.solaris (the Makefile we use on
+   the local Solaris machines) if you edit a few paths and compile flags
+   according to your system; in this case, rename Makefile.solaris to
+   Makefile.
+
+   Ginger can be built with or without two "special" libraries: The XPM
+   (X Pixmap) library to support color icons and the Elk (Extension
+   Language Kit) library to incorporate Scheme as an extension language.
+
+   Both libraries are disabled in the default makefiles. The Elk support
+   in Ginger is currently very experimental, undocumented, and not
+   considered ready for public use, so you'll probably want to leave Elk
+   disabled. The support for XPM on the other hand is quite nice, so if
+   you have XPM installed, you'll probably want to build Ginger with
+   support for XPM.
+
+   To change the default configuration, edit the file
+   "Ginger/Src/config.h" and set USE_XPM_LIB (and/or USE_SCHEME) to 1 as
+   desired. Then edit the Imakefile (or Makefile.solaris) accordingly
+   (the comments in the makefiles should help here).
+
+3) If you have imake, type 'xmkmf' in the "Ginger/Src" directory to
+   build a Makefile from the Imakefile. 
+
+4) In "Ginger/Src", run 'make depend; make' to build the program. 
+
+5) Start the X Window System, if it isn't done already.
+   Install the Ginger X resources found in the file "Ginger/Ginger.ad".
+   You can edit the file to select your favorite fonts and colors, and
+   to specify keyboard and mouse button actions. The default mouse
+   actions are the following:
+       left button   -   select or drag objects
+       middle button -   set/drag the "hotspot"
+
+   The on-line hypertext help contains more details about these 
+   event-action bindings.
+
+   There are several ways to install the Ginger X resources:
+	a) As root, you can copy the application defaults
+	   file "Ginger.ad" to an appropriate directory,
+	   something like /usr/X386/lib/X11/app-defaults/ on a Linux
+	   system. Name the target file "Ginger" 
+	b) Or append the contents of Ginger.ad to your ~/.Xresources
+	   file, then restart your X session.
+	c) Or the simple way, type:
+	       xrdb -merge Ginger.ad
+	   Note: this command must be issued each time you 
+	   restart X.
+
+6) A couple of demo graphs is included in the "Examples" directory for
+   testing purposes. You can jump to this directory and then test Ginger
+   by typing "../Src/ginger"
+
+   Ginger depends on a few support files, e.g. the hypertext source
+   files,
+	hyperhelp
+	hyperhelp.index
+   By default, the program expects to find these files in its working
+   directory. You can however put the files in any directory you like,
+   and then set the environment variable GINGERLIBPATH to the 
+   relevant directory.
+
+   Once the Ginger main window pops up, you can click the 'help' button
+   to browse the hypertext documentation of the program.
+

@@ -1,0 +1,510 @@
+(node A
+  label "A"
+  shape ellipse
+  x 370  y 200
+  width 20  height 20
+)
+(node B
+  label "B"
+  shape ellipse
+  x 355  y 131
+  width 20  height 20
+)
+(node C
+  label "C"
+  shape ellipse
+  x 313  y 74
+  width 20  height 20
+)
+(node D
+  label "D"
+  shape ellipse
+  x 252  y 39
+  width 20  height 20
+)
+(node E
+  label "E"
+  shape ellipse
+  x 183  y 31
+  width 20  height 20
+)
+(node F
+  label "F"
+  shape ellipse
+  x 116  y 53
+  width 20  height 20
+)
+(node G
+  label "G"
+  shape ellipse
+  x 63  y 101
+  width 20  height 20
+)
+(node H
+  label "H"
+  shape ellipse
+  x 34  y 165
+  width 20  height 20
+)
+(node I
+  label "I"
+  shape ellipse
+  x 34  y 235
+  width 20  height 20
+)
+(node J
+  label "J"
+  shape ellipse
+  x 63  y 299
+  width 20  height 20
+)
+(node K
+  label "K"
+  shape ellipse
+  x 115  y 347
+  width 20  height 20
+)
+(node L
+  label "L"
+  shape ellipse
+  x 183  y 369
+  width 20  height 20
+)
+(node M
+  label "M"
+  shape ellipse
+  x 252  y 361
+  width 20  height 20
+)
+(node N
+  label "N"
+  shape ellipse
+  x 313  y 326
+  width 20  height 20
+)
+(node O
+  label "O"
+  shape ellipse
+  x 355  y 269
+  width 20  height 20
+)
+(edge AB
+  from A to B
+  direction none
+)
+(edge AC
+  from A to C
+  direction none
+)
+(edge AD
+  from A to D
+  direction none
+)
+(edge AE
+  from A to E
+  direction none
+)
+(edge AF
+  from A to F
+  direction none
+)
+(edge AG
+  from A to G
+  direction none
+)
+(edge AH
+  from A to H
+  direction none
+)
+(edge AI
+  from A to I
+  direction none
+)
+(edge AJ
+  from A to J
+  direction none
+)
+(edge AK
+  from A to K
+  direction none
+)
+(edge AL
+  from A to L
+  direction none
+)
+(edge AM
+  from A to M
+  direction none
+)
+(edge AN
+  from A to N
+  direction none
+)
+(edge AO
+  from A to O
+  direction none
+)
+(edge BC
+  from B to C
+  direction none
+)
+(edge BD
+  from B to D
+  direction none
+)
+(edge BE
+  from B to E
+  direction none
+)
+(edge BF
+  from B to F
+  direction none
+)
+(edge BG
+  from B to G
+  direction none
+)
+(edge BH
+  from B to H
+  direction none
+)
+(edge BI
+  from B to I
+  direction none
+)
+(edge BJ
+  from B to J
+  direction none
+)
+(edge BK
+  from B to K
+  direction none
+)
+(edge BL
+  from B to L
+  direction none
+)
+(edge BM
+  from B to M
+  direction none
+)
+(edge BN
+  from B to N
+  direction none
+)
+(edge BO
+  from B to O
+  direction none
+)
+(edge CD
+  from C to D
+  direction none
+)
+(edge CE
+  from C to E
+  direction none
+)
+(edge CF
+  from C to F
+  direction none
+)
+(edge CG
+  from C to G
+  direction none
+)
+(edge CH
+  from C to H
+  direction none
+)
+(edge CI
+  from C to I
+  direction none
+)
+(edge CJ
+  from C to J
+  direction none
+)
+(edge CK
+  from C to K
+  direction none
+)
+(edge CL
+  from C to L
+  direction none
+)
+(edge CM
+  from C to M
+  direction none
+)
+(edge CN
+  from C to N
+  direction none
+)
+(edge CO
+  from C to O
+  direction none
+)
+(edge DE
+  from D to E
+  direction none
+)
+(edge DF
+  from D to F
+  direction none
+)
+(edge DG
+  from D to G
+  direction none
+)
+(edge DH
+  from D to H
+  direction none
+)
+(edge DI
+  from D to I
+  direction none
+)
+(edge DJ
+  from D to J
+  direction none
+)
+(edge DK
+  from D to K
+  direction none
+)
+(edge DL
+  from D to L
+  direction none
+)
+(edge DM
+  from D to M
+  direction none
+)
+(edge DN
+  from D to N
+  direction none
+)
+(edge DO
+  from D to O
+  direction none
+)
+(edge EF
+  from E to F
+  direction none
+)
+(edge EG
+  from E to G
+  direction none
+)
+(edge EH
+  from E to H
+  direction none
+)
+(edge EI
+  from E to I
+  direction none
+)
+(edge EJ
+  from E to J
+  direction none
+)
+(edge EK
+  from E to K
+  direction none
+)
+(edge EL
+  from E to L
+  direction none
+)
+(edge EM
+  from E to M
+  direction none
+)
+(edge EN
+  from E to N
+  direction none
+)
+(edge EO
+  from E to O
+  direction none
+)
+(edge FG
+  from F to G
+  direction none
+)
+(edge FH
+  from F to H
+  direction none
+)
+(edge FI
+  from F to I
+  direction none
+)
+(edge FJ
+  from F to J
+  direction none
+)
+(edge FK
+  from F to K
+  direction none
+)
+(edge FL
+  from F to L
+  direction none
+)
+(edge FM
+  from F to M
+  direction none
+)
+(edge FN
+  from F to N
+  direction none
+)
+(edge FO
+  from F to O
+  direction none
+)
+(edge GH
+  from G to H
+  direction none
+)
+(edge GI
+  from G to I
+  direction none
+)
+(edge GJ
+  from G to J
+  direction none
+)
+(edge GK
+  from G to K
+  direction none
+)
+(edge GL
+  from G to L
+  direction none
+)
+(edge GM
+  from G to M
+  direction none
+)
+(edge GN
+  from G to N
+  direction none
+)
+(edge GO
+  from G to O
+  direction none
+)
+(edge HI
+  from H to I
+  direction none
+)
+(edge HJ
+  from H to J
+  direction none
+)
+(edge HK
+  from H to K
+  direction none
+)
+(edge HL
+  from H to L
+  direction none
+)
+(edge HM
+  from H to M
+  direction none
+)
+(edge HN
+  from H to N
+  direction none
+)
+(edge HO
+  from H to O
+  direction none
+)
+(edge IJ
+  from I to J
+  direction none
+)
+(edge IK
+  from I to K
+  direction none
+)
+(edge IL
+  from I to L
+  direction none
+)
+(edge IM
+  from I to M
+  direction none
+)
+(edge IN
+  from I to N
+  direction none
+)
+(edge IO
+  from I to O
+  direction none
+)
+(edge JK
+  from J to K
+  direction none
+)
+(edge JL
+  from J to L
+  direction none
+)
+(edge JM
+  from J to M
+  direction none
+)
+(edge JN
+  from J to N
+  direction none
+)
+(edge JO
+  from J to O
+  direction none
+)
+(edge KL
+  from K to L
+  direction none
+)
+(edge KM
+  from K to M
+  direction none
+)
+(edge KN
+  from K to N
+  direction none
+)
+(edge KO
+  from K to O
+  direction none
+)
+(edge LM
+  from L to M
+  direction none
+)
+(edge LN
+  from L to N
+  direction none
+)
+(edge LO
+  from L to O
+  direction none
+)
+(edge MN
+  from M to N
+  direction none
+)
+(edge MO
+  from M to O
+  direction none
+)
+(edge NO
+  from N to O
+  direction none
+)

@@ -1,0 +1,64 @@
+##
+## Test program
+##
+
+##
+RM = rm -v -f
+
+## progname
+PROG = tp2
+
+## include files paths
+INCLUDE_FLAGS = -I. -I.. -I../include
+
+## gcc compilation extra flags
+CC_FLAGS2 = \
+	-Wall -g
+
+##
+CC = gcc $(CC_FLAGS2) $(INCLUDE_FLAGS)
+
+## lib to generate
+STATIC = 
+
+## files to look for prototypes
+PROTOFILES = 
+
+## c files 
+CFILES = \
+	main.c
+
+## o files 
+OFILES =  \
+	main.o
+
+## 
+all: $(OFILES)
+	gcc -g $(INCLUDE_FLAGS) $(OFILES) ../libs/engine.a -lm -o tp2
+
+## run c extract
+cex:
+	indent $(CFILES)
+	@echo "Done."
+
+## 
+preset:
+	@echo "preset"
+	find . -type f -exec md5sum '{}' ';' >md5sum.txt
+	@echo "Done."
+
+##
+clean:
+	$(RM) *.gif
+	$(RM) *.ps
+	$(RM) *.o
+	$(RM) *.i
+	$(RM) *.s
+	$(RM) *.a
+	$(RM) *.c~
+	$(RM) *.txt~	
+	$(RM) logfile.txt
+	$(RM) dmake.output
+	$(RM) $(PROG)
+
+## End.

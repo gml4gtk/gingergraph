@@ -1,0 +1,5 @@
+#!/bin/sh -x
+echo -n "char *versionstring = \"1.00.00." >version.h
+echo -n $HOSTNAME"."$HOSTTYPE"."$MACHTYPE"."$PPID"."$RANDOM  >>version.h
+echo -n "\";" >>version.h
+# End.

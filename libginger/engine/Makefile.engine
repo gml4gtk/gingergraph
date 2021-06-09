@@ -1,0 +1,174 @@
+##
+## Layouter engine core.
+##
+
+##
+RM = rm -v -f
+
+## include files paths
+INCLUDE_FLAGS = -I. -I.. -I../include
+
+## gcc compilation extra flags
+CC_FLAGS2 = \
+	-Wall -g
+
+##
+CC = gcc $(CC_FLAGS2) $(INCLUDE_FLAGS)
+
+## lib to generate
+STATIC = ./engine.a
+
+## files to look for prototypes
+PROTOFILES = \
+	clist.c \
+	edge.c \
+	gd12.c \
+	graph.c \
+	eparse.c \
+	vparse.c \
+	layout1.c \
+	layout2.c \
+	lginger.c \
+	log.c \
+	machine.c \
+	mempool.c \
+	mvar.c \
+	matrix.c \
+	mm.c \
+	node.c \
+	ps.c \
+	uniqstr.c \
+	svg.c 
+
+## c files 
+CFILES = \
+	clist.c \
+	eparse.c \
+	vparse.c \
+	edge.c \
+	gd12.c \
+	graph.c \
+	layout1.c \
+	layout2.c \
+	lginger.c \
+	log.c \
+	machine.c \
+	mempool.c \
+	mm.c \
+	matrix.c \
+	mvar.c \
+	node.c \
+	ps.c \
+	uniqstr.c \
+	svg.c \
+	dparse.tab.c \
+	lex.dot_.c
+
+## lint files 
+LINTFILES = \
+	clist.c \
+	eparse.c \
+	vparse.c \
+	edge.c \
+	graph.c \
+	layout1.c \
+	layout2.c \
+	lginger.c \
+	log.c \
+	machine.c \
+	mempool.c \
+	mm.c \
+	matrix.c \
+	mvar.c \
+	node.c \
+	ps.c \
+	uniqstr.c \
+	svg.c
+
+## o files 
+OFILES =  \
+	clist.o \
+	eparse.o \
+	vparse.o \
+	edge.o \
+	gd12.o \
+	graph.o \
+	layout1.o \
+	layout2.o \
+	lginger.o \
+	log.o \
+	machine.o \
+	mempool.o \
+	matrix.o \
+	mm.o \
+	mvar.o \
+	node.o \
+	ps.o \
+	uniqstr.o \
+	svg.o \
+	dparse.tab.o \
+	lex.dot_.o
+
+## engine
+all: $(OFILES)
+	ar rcv $(STATIC) $(OFILES)
+	ranlib $(STATIC)
+	@echo "engine lib" $(STATIC)
+	cp $(STATIC) ../libs
+	@ls -la1 *.a
+
+## run c extract
+cex:
+	cextract clist.c >../include/clist.h
+	cextract edge.c >../include/edge.h
+	cextract eparse.c >../include/eparse.h
+	cextract vparse.c >../include/vparse.h
+	cextract graph.c >../include/graph.h
+	cextract layout1.c >../include/layout1.h
+	cextract layout2.c >../include/layout2.h
+	cextract lginger.c >../include/lginger.h
+	cextract log.c >../include/log.h
+	cextract machine.c >../include/machine.h
+	cextract matrix.c >../include/matrix.h
+	cextract mempool.c >../include/mempool.h
+	cextract mvar.c >../include/mvar.h
+	cextract mm.c >../include/mm.h
+	cextract node.c >../include/node.h
+	cextract uniqstr.c >../include/uniqstr.h
+	cextract ps.c >../include/ps.h
+	indent $(CFILES)
+
+## 
+preset:
+	@echo "preset"
+	find . -type f -exec md5sum '{}' ';' >md5sum.txt
+	@echo "done"
+
+##
+lexers:
+	rm -v -f dlex.l
+	rm -v -f dparse.y
+	rm -v -f lex.dot.c	
+	rm -v -f dparse.output
+	rm -v -f dparse.tab.c
+	rm -v -f dparse.tab.h
+	rm -v -f dparse.vcg
+	cp dlex.l.c dlex.l
+	cp dparse.y.c dparse.y
+	bison --debug --file-prefix=dparse --graph=dparse.vcg -y -v -d dparse.y
+	flex -8 -d -f -b -CFa -Pdot_ dlex.l
+
+##
+splint:
+	splint $(INCLUDE_FLAGS) $(LINTFILES)
+
+##
+clean:
+	$(RM) *.o
+	$(RM) *.i
+	$(RM) *.s
+	$(RM) *.a
+	$(RM) *.c~
+	$(RM) dmake.output
+
+## End.

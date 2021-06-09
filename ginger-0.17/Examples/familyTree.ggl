@@ -1,0 +1,316 @@
+(node _5_
+  label "Niels Christian Larsen"
+  bg_color "lightblue"
+  x 950  y 350
+  width 129  height 20
+)
+(node _3_
+  label "Niels Aage Møller Larsen"
+  bg_color "lightblue"
+  x 780  y 200
+  width 149  height 20
+)
+(node _1_
+  label "Møller Larsen"
+  bg_color "lightblue"
+  x 610  y 100
+  width 83  height 20
+)
+(node _95_
+  label "Svend Larsen"
+  bg_color "lightblue"
+  x 440  y 50
+  width 84  height 20
+)
+(node _102_
+  label "Lars Svendsen"
+  bg_color "lightblue"
+  x 270  y 50
+  width 90  height 20
+)
+(node _146_
+  label "Svend Larsen"
+  bg_color "lightblue"
+  x 100  y 50
+  width 84  height 20
+)
+(node _145_
+  label "Ane Marie Svendsen"
+  color "red"
+  bg_color "misty rose"
+  x 270  y 100
+  width 125  height 20
+)
+(node _96_
+  label "Thomine (Mine) Larsen"
+  color "red"
+  bg_color "misty rose"
+  x 440  y 150
+  width 135  height 20
+)
+(node _137_
+  label "Christian Christensen"
+  bg_color "lightblue"
+  x 270  y 150
+  width 125  height 20
+)
+(node _136_
+  label "Inger Katrine Mortensdatter"
+  color "red"
+  bg_color "misty rose"
+  x 270  y 200
+  width 157  height 20
+)
+(node _2_
+  label "Anna Larsen"
+  color "red"
+  bg_color "misty rose"
+  x 610  y 300
+  width 78  height 20
+)
+(node _60_
+  label "Lars Christian Larsen"
+  bg_color "lightblue"
+  x 440  y 250
+  width 125  height 20
+)
+(node _65_
+  label "Niels Larsen"
+  bg_color "lightblue"
+  x 270  y 250
+  width 76  height 20
+)
+(node _66_
+  label "Lars Nielsen"
+  bg_color "lightblue"
+  x 100  y 250
+  width 76  height 20
+)
+(node _166_
+  label "Elisabeth Jensdatter"
+  color "red"
+  bg_color "misty rose"
+  x 100  y 300
+  width 119  height 20
+)
+(node _64_
+  label "Maria Larsen"
+  color "red"
+  bg_color "misty rose"
+  x 270  y 300
+  width 80  height 20
+)
+(node _61_
+  label "Ane Elise (Eline) Larsen"
+  color "red"
+  bg_color "misty rose"
+  x 440  y 350
+  width 142  height 20
+)
+(node _63_
+  label "Thomas Olsen"
+  bg_color "lightblue"
+  x 270  y 350
+  width 86  height 20
+)
+(node _62_
+  label "Martha Olsen"
+  color "red"
+  bg_color "misty rose"
+  x 270  y 400
+  width 82  height 20
+)
+(node _4_
+  label "Lene Margrethe Larsen"
+  color "red"
+  bg_color "misty rose"
+  x 780  y 500
+  width 137  height 20
+)
+(node _13_
+  label "Anders Christian Frederiksen"
+  bg_color "lightblue"
+  x 610  y 450
+  width 169  height 20
+)
+(node _30_
+  label "Frederik Frederiksen"
+  bg_color "lightblue"
+  x 440  y 450
+  width 122  height 20
+)
+(node _33_
+  label "Peder Frederiksen"
+  bg_color "lightblue"
+  x 270  y 450
+  width 109  height 20
+)
+(node _34_
+  label "Ane Kirstine Frederiksen"
+  color "red"
+  bg_color "misty rose"
+  x 270  y 500
+  width 144  height 20
+)
+(node _29_
+  label "Kirstine Frederiksen"
+  color "red"
+  bg_color "misty rose"
+  x 440  y 500
+  width 117  height 20
+)
+(node _14_
+  label "Ingrid Dorthea Frederiksen"
+  color "red"
+  bg_color "misty rose"
+  x 610  y 550
+  width 155  height 20
+)
+(node _39_
+  label "Niels Kristian Pedersen"
+  bg_color "lightblue"
+  x 440  y 550
+  width 136  height 20
+)
+(node _134_
+  label "Ernstsine Pedersen"
+  color "red"
+  bg_color "misty rose"
+  x 440  y 600
+  width 114  height 20
+)
+(edge _3_5
+  from _3_ to _5_
+  color "black"
+  direction none
+)
+(edge _1_3
+  from _1_ to _3_
+  color "black"
+  direction none
+)
+(edge _95_1
+  from _95_ to _1_
+  color "black"
+  direction none
+)
+(edge _102_95
+  from _102_ to _95_
+  color "black"
+  direction none
+)
+(edge _146_102
+  from _146_ to _102_
+  color "black"
+  direction none
+)
+(edge _145_95
+  from _145_ to _95_
+  color "black"
+  direction none
+)
+(edge _96_1
+  from _96_ to _1_
+  color "black"
+  direction none
+)
+(edge _137_96
+  from _137_ to _96_
+  color "black"
+  direction none
+)
+(edge _136_96
+  from _136_ to _96_
+  color "black"
+  direction none
+)
+(edge _2_3
+  from _2_ to _3_
+  color "black"
+  direction none
+)
+(edge _60_2
+  from _60_ to _2_
+  color "black"
+  direction none
+)
+(edge _65_60
+  from _65_ to _60_
+  color "black"
+  direction none
+)
+(edge _66_65
+  from _66_ to _65_
+  color "black"
+  direction none
+)
+(edge _166_65
+  from _166_ to _65_
+  color "black"
+  direction none
+)
+(edge _64_60
+  from _64_ to _60_
+  color "black"
+  direction none
+)
+(edge _61_2
+  from _61_ to _2_
+  color "black"
+  direction none
+)
+(edge _63_61
+  from _63_ to _61_
+  color "black"
+  direction none
+)
+(edge _62_61
+  from _62_ to _61_
+  color "black"
+  direction none
+)
+(edge _4_5
+  from _4_ to _5_
+  color "black"
+  direction none
+)
+(edge _13_4
+  from _13_ to _4_
+  color "black"
+  direction none
+)
+(edge _30_13
+  from _30_ to _13_
+  color "black"
+  direction none
+)
+(edge _33_30
+  from _33_ to _30_
+  color "black"
+  direction none
+)
+(edge _34_30
+  from _34_ to _30_
+  color "black"
+  direction none
+)
+(edge _29_13
+  from _29_ to _13_
+  color "black"
+  direction none
+)
+(edge _14_4
+  from _14_ to _4_
+  color "black"
+  direction none
+)
+(edge _39_14
+  from _39_ to _14_
+  color "black"
+  direction none
+)
+(edge _134_14
+  from _134_ to _14_
+  color "black"
+  direction none
+)

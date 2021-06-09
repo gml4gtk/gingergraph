@@ -1,0 +1,73 @@
+##
+## Test program
+##
+
+##
+RM = rm -v -f
+
+## progname
+PROG = tp5
+
+## include files paths
+INCLUDE_FLAGS = -I. -I.. -I../include
+
+## gcc compilation extra flags
+CC_FLAGS2 = \
+	-Wall -g
+
+##
+CC = gcc $(CC_FLAGS2) $(INCLUDE_FLAGS)
+
+## lib to generate
+STATIC = 
+
+## files to look for prototypes
+PROTOFILES = 
+
+## c files 
+CFILES = \
+	main.c
+
+## o files 
+OFILES =  \
+	main.o
+
+## 
+all: $(OFILES)
+	gcc -g $(INCLUDE_FLAGS) $(OFILES) ../libs/engine.a -lm -o tp5
+
+## run c extract
+cex:
+	indent $(CFILES)
+	@echo "Done."
+
+## 
+preset:
+	@echo "preset"
+	find . -type f -exec md5sum '{}' ';' >md5sum.txt
+	@echo "Done."
+
+##
+clean:
+	$(RM) *.ps
+	$(RM) *.o
+	$(RM) *.i
+	$(RM) *.s
+	$(RM) *.a
+	$(RM) *.c~
+	$(RM) *.txt~	
+	$(RM) logfile.txt
+	$(RM) logfile1.txt
+	$(RM) logfile2.txt
+	$(RM) dmake.output
+	$(RM) $(PROG)
+
+## valgrind --tool=memcheck prog
+## valgrind --tool=cachegrind prog
+## valgrind --tool=massif prog
+## valgrind --leak-check=full prog
+## valgrind --show-reachable=yes prog
+## valgrind -v prog
+## valgrind -v --show-reachable=yes --leak-check=full prog
+
+## End.

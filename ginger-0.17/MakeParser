@@ -1,0 +1,23 @@
+# $Id: MakeParser,v 1.1 1996/01/02 16:20:26 lupus Exp $ 
+
+#***************************************************************
+#  This file is part of the Ginger project.                    *
+#  Created 1-1-1996                                            *
+#  Niels C. Larsen, Aalborg University, Denmark                *
+# (lupus@iesd.auc.dk)                                          *
+#***************************************************************
+
+# ---  Makefile for building the C-source files for 
+#      the GGL (Ginger Graph Language) lexer and parser  ---
+
+LEX	= flex
+YACC	= bison -dv
+
+all: ginger.tab.c lex.yy.c
+
+ginger.tab.c : ginger.y
+	$(YACC) ginger.y
+
+lex.yy.c : ginger.l ginger.tab.h
+	$(LEX) ginger.l
+

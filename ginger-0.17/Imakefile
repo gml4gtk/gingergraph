@@ -1,0 +1,125 @@
+/* $Id: Imakefile,v 1.25 1996/03/11 11:19:37 lupus Exp $ */
+
+/***************************************************************
+ * This file is part of the Ginger project.                    *
+ * Created 27-12-1995                                          *
+ * Niels C. Larsen, Aalborg University, Denmark                *
+ * (lupus@iesd.auc.dk)                                         *
+ ***************************************************************/
+
+/* Ginger Imakefile.
+
+   To build Ginger using the Imakefile:
+
+	xmkmf
+	make depend
+	make
+*/
+
+/* ---  Libraries  --- */
+
+/* Elk libraries
+   To build Ginger without the Elk library, leave the following
+   ELK-definitions empty (and remember to set USE_SCHEME to 0 in config.h).
+*/
+/*
+ELK_BASE_PATH = /usr/local/lib/elk
+ELK_MODULE    = $(ELK_BASE_PATH)/lib/module.o
+ELK_INCLUDES  = -I$(ELK_BASE_PATH)/include
+ELK_SYS_LIBRARIES =
+*/
+ELK_BASE_PATH = 
+ELK_MODULE    = 
+ELK_INCLUDES  = 
+ELK_SYS_LIBRARIES =
+
+/* If you wish to build Ginger without the Xpm library, remove -lXpm
+   from the SYS_LIBRARIES definition (and remember to edit config.h).
+
+   If you wish to build Ginger with the Xpm library, but 
+   the Xpm library is installed in a location where the 
+   linker can't find it given the -lXpm option, remove -lXpm from
+   SYS_LIBRARIES and add the full pathname of the Xpm-library 
+   to LOCAL_LIBRARIES instead. You may also have to add a -I<path>
+   for Xpm to the INCLUDES, if the compiler can't find the file 
+   <X11/xpm.h>. If all else fail, edit the #include <X11/xpm.h> 
+   directive in node.h to the full path of xpm.h.
+*/
+
+#ifdef HPArchitecture
+XMULIB=/usr/contrib/X11R6/lib/libXmu.a
+XAWLIB=/usr/contrib/X11R6/lib/libXaw.a
+CCOPTIONS=-Ae -I/usr/contrib/X11R6/include -I/opt/xpm/include
+#endif
+
+
+SYS_LIBRARIES   =-L/opt/xpm/lib/X11 -lXpm XawClientLibs -lm $(ELK_SYS_LIBRARIES)
+
+/*SYS_LIBRARIES   = XawClientLibs -lm $(ELK_SYS_LIBRARIES)*/
+LOCAL_LIBRARIES = $(ELK_MODULE) 
+
+INCLUDES = $(ELK_INCLUDES) 
+DEPLIBS  = XawClientDepLibs $(ELK_MODULE)
+
+/* ---  It should not be necessary to change defs below this line  --- */
+
+SRCS1 = graph.c node.c edge.c graphDisplay.c graphIO.c rectangles.c HPalloca.c
+OBJS1 = graph.o node.o edge.o graphDisplay.o graphIO.o rectangles.o HPalloca.o
+
+SRCS2 = mainWindow.c icon.c fileSelector.c Directory.c hotspot.c
+OBJS2 = mainWindow.o icon.o fileSelector.o Directory.o hotspot.o
+
+SRCS3 = main.c clist.c allocmem.c str.c focus.c PostScript.c
+OBJS3 = main.o clist.o allocmem.o str.o focus.o PostScript.o
+
+SRCS4 = graphBuffer.c menu.c menuDispatch.c options.c matrix.c
+OBJS4 = graphBuffer.o menu.o menuDispatch.o options.o matrix.o
+
+SRCS5 = symtable.c ginger.tab.c lex.yy.c
+OBJS5 = symtable.o ginger.tab.o lex.yy.o
+
+SRCS6 = stringstack.c hyper.c helpWindow.c notify.c version.c message.c
+OBJS6 = stringstack.o hyper.o helpWindow.o notify.o version.o message.o
+
+SRCS7 = colormap.c nodeSelectionWindow.c nodeSelection.c actions.c
+OBJS7 = colormap.o nodeSelectionWindow.o nodeSelection.o actions.o
+
+SRCS8 = edgeSelectionWindow.c edgeSelection.c graphInteraction.c
+OBJS8 = edgeSelectionWindow.o edgeSelection.o graphInteraction.o
+
+SRCS9 = edgeAttributeWindow.c nodeAttributeWindow.c circularLayoutParameterWindow.c arrayLayoutParameterWindow.c arrayLayout.c circularLayout.c treeLayout.c treeLayoutParameterWindow.c dragRectangle.c
+OBJS9 = edgeAttributeWindow.o nodeAttributeWindow.o circularLayoutParameterWindow.o arrayLayoutParameterWindow.o arrayLayout.o circularLayout.o treeLayout.o treeLayoutParameterWindow.o dragRectangle.o
+
+SRCS10 = elkGraph.c elkInterface.c promptWindow.c
+OBJS10 = elkGraph.o elkInterface.o promptWindow.o
+
+
+SRCSA = $(SRCS1) $(SRCS10) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5) $(SRCS6) 
+OBJSA = $(OBJS1) $(OBJS10) $(OBJS2) $(OBJS3) $(OBJS4) $(OBJS5) $(OBJS6)
+
+SRCSB = $(SRCS7) $(SRCS8) $(SRCS9)
+OBJSB = $(OBJS7) $(OBJS8) $(OBJS9)
+
+SRCS = $(SRCSA) $(SRCSB)
+OBJS = $(OBJSA) $(OBJSB)
+
+ComplexProgramTarget(ginger)
+
+
+/* 
+  Additional HPUX Install targets
+*/
+
+InstallAppDefaults(Ginger) 
+
+list = Examples/sourceFiles.readme Examples/familyTree.readme\
+ Examples/example1.ggl      Examples/familyTree.ggl\
+ Examples/example2.ggl      Examples/sourceFiles.ggl
+
+dirs=$(LIBDIR)/Examples
+
+InstallMultiple($(list),$(dirs))
+
+##Maked sure its readable ...
+install::
+	chmod -R a+rx /opt/ginger

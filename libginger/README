@@ -1,0 +1,305 @@
+/*
+Checksum: 3029205724      (README)
+*/
+
+/*
+ *    This file is part of:
+ *
+ *     Ginger -- an INteractive Graph EditoR for the X Window System.
+ *                          COPYRIGHT (C) 1996 
+ *
+ *    Martin K. Molz and Niels C. Larse, Aalborg University, Denmark.
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 2 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with Bison; see the file COPYING.  If not, write to
+ *    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ *    Boston, MA 02110-1301, USA.
+ */
+
+Compilation test on a dfs and matrix barycenter based graph layouter.
+
+This is GNU GPL free and opensource software including proper source,
+free to share with others and improve. see also http://www.gnu.org .
+
+The directory tp1 `test program' has a small program.
+
+INTRODUCTION
+
+This algorithm is for routing hierarchies of elements.  A "good route" is
+one that has a minimum number of link crossings.  An algorithm that was
+truly optimal (for minimizing link crossings) would be combinatorial and
+therefore cost prohibitive; therefore, this algorithm uses a heuristic
+approach that finds a route with close to the minimum number of crossings
+in a reasonable amount of time.
+
+This algorithm assumes that all the elements form a directed acyclic graph
+(DAG), which means (1) that links flow one way between elements and (2) for
+any given node there is no way to get back to the node if, starting at the
+node, you traverse the links going from node to node.  This algorithm also
+assumes that AT MOST only ONE link may exist between a pair of nodes.
+
+-------------------------------------------------------------------------------
+
+OVERVIEW OF ALGORITHM
+
+All elements that do not have any parents are placed in the first row (row 0).
+Elements are assigned to rows, where the row number for each child is equal to
+the [maximum(row number of all its parents) + 1].  Crossovers are determined
+by examining links between elements on adjacent rows, so if a parent is in a
+row that is not adjacent to its child's row, "dummy" nodes are created on the
+rows in between the parent and child, and the parent and child are connected
+via these dummy nodes.
+
+Once the elements (now called nodes) are assigned to individual rows, the
+rows are sorted (repeatedly) in order to minimize link crossings.  The
+sort criteria involves attempting to both center children under parents and
+to center parents over children.  The sort orders are then tweaked by swapping
+nodes that have the same sort value.
+
+After the column orders are finalized, the nodes are spread out so they are
+more or less centered above their children and below their parents.  When
+centering children below parents, a row of children is sorted by which node
+has the greatest number of parents.  These get first choice of where to be
+placed under the parents (actually, dummy nodes get first preference, then
+all of the others).  Centering parents above children is analogous.
+
+When done with node placement, there may be some empty columns, and the
+numbering scheme may not start at 0.  Therefore, the empty columns must
+be eliminated and every node needs its column renumbered, starting at 0.
+
+Then you are done.
+
+-------------------------------------------------------------------------------
+
+REALIZATION MATRIX
+
+When it comes to both sorting nodes and horizontally spacing the nodes, two
+adjacent rows are always involved.  For example, if we are sorting row[i]
+based on the children of row[i]'s nodes, then row[i+1] is also involved
+at this step.  These two rows are called the "i-th realization", and form
+the "i-th realization matrix".  A realization matrix shows the parent-child
+relationships between adjacent rows, with the parents on the rows and the
+children on the columns.  If there is a parent-child relationship, a 1 is
+stored in the matrix at the position, else a 0 is stored.
+
+An example:
+
+                            A     B     C  D
+                            \ \  / \  / /  |
+                             \ /\  / \ /   |
+                             /\ / \  / \   |
+                            / /\   /\    \ |
+                           //   \ /   \   \|
+                          E      F     G   H
+
+   E  F  G  H
+A  0  1  1  0    In this example, parent 'A' has children 'F' and 'G',
+B  1  0  0  1                     parent 'B' has children 'E' and 'H',
+C  1  1  0  0                     parent 'C' has children 'E' and 'F',
+D  0  0  0  1                 and parent 'D' has child 'H'.
+
+-------------------------------------------------------------------------------
+
+ROW AND COLUMN BARYCENTERS
+
+Two other important concepts are the "row barycenter" and the "column
+barycenter" for a node.  The "row barycenter" is the basically the average
+of the positions of a node's children.  The "column barycenter" is the average
+of the positions of a node's parents.  These numbers tell us where a node
+would like to be positioned in its row, depending whether we are positioning
+relative to children or parents.
+
+For example, using the above realization matrix, we can calculate the row
+barycenters for A, B, C, and D, and the column barycenters for E, F, G, and H.
+Since the row barycenter of a node is equal to the sum of the positions of
+the node's children divided by the number of children of the node, the row
+barycenter for A is (1 + 2)/2 = 1.5.  This assumes that we start numbering
+rows and columns at 0.  Similarly, the column barycenter of a node is equal
+to the sum of the positions of the node's parents divided by the number of
+parents of the node.  So, the column barycenter of F is (0 + 2)/2 = 1.0.
+The complete example is as follows:
+
+
+                             Row
+      |  E    F    G    H  | Barys
+------+--------------------+-----
+A     |  0    1    1    0  | 1.5
+B     |  1    0    0    1  | 1.5
+C     |  1    1    0    0  | 0.5
+D     |  0    0    0    1  | 3.0
+------+--------------------+-----
+Col   | 1.5  1.0  0.0  2.0 |
+Barys |                    |
+
+
+If we were to sort the child nodes here by their column barycenters, the new
+order would be G, F, E, H.  If we were to sort the parent nodes here by their
+row barycenters, then the order would be C, A, B, D (if two or more nodes have
+the same value, be sure to keep the same precedence that already exists
+between them, e.g., make sure that order after sorting is not C, B, A, D).
+
+If a node has no parents then it can't have a column barycenter.  This case
+should never happen, as all nodes that have no parents should be in the first
+level of the hierarchy, and these nodes would only be represented in
+realization matrix 0, and they would only have row barycenters.
+
+If a node has no children then it can't have a row barycenter.  In this case,
+while sorting based on row barycenters, sort AROUND these nodes, i.e., do
+not change their positions at all.  For example, if we had the following:
+
+                             Row
+      |  W    X    Y    Z  | Barys
+------+--------------------+-----
+Q     |  0    1    1    1  | 2.0
+R     |  0    0    0    0  | ???
+S     |  1    0    0    0  | 0.0
+T     |  0    1    0    1  | 2.0                    ,
+------+--------------------+-----
+Col   | 2.0  1.5  0.0  1.5 |
+Barys |                    |
+
+and we were to sort by row barycenters, the resulting order should be S, R,
+Q, T.  Notice how R stayed in its position, and even though Q and T had the
+same barycentric value, Q stayed before T.
+
+The whole reason for sorting rows and columns by their barycenters is to
+decrease the number of crossovers.
+
+-------------------------------------------------------------------------------
+
+CROSSOVERS
+
+The realization matrix is also used to count the number of crossovers between
+two adjacent rows of nodes.  For each row, starting with the second row, if
+a row element has a 1, then sum up all of the matrix elements that are above
+AND to the right of this element.  Looking again at the first example:
+
+
+
+
+                            A     B     C  D
+                            \ \  / \  / /  |
+                             \ /\  / \ /   |
+                             /\ / \  / \   |
+                            / /\   /\    \ |
+                           //   \ /   \   \|
+                          E      F     G   H
+
+
+
+
+                             Row
+      |  E    F    G    H  | Barys
+------+--------------------+-----
+A     |  0    1    1    0  | 1.5
+B     |  1    0    0    1  | 1.5
+C     |  1    1    0    0  | 0.5
+D     |  0    0    0    1  | 3.0
+------+--------------------+-----
+Col   | 1.5  1.0  0.0  2.0 |
+Barys |                    |
+
+Starting with the second row (parent B's row), position B-E has a 1.  Looking
+at positions above and to the right, we see positions A-F and A-G both have
+a 1, so the number of crossovers is currently = 2.  Position B-H has a 1, but
+there are no elements above and to the right, so crossovers is still = 2.
+For parent row of C, position C-E crosses over with B-H, A-F, and A-G, so
+crossovers = 5.  C-F crosses over with B-H and A-G, so crossovers = 7.  For
+parent row D, position D-H doesn't cross over with any other link.  So for
+this realization matrix representing these two rows, the number of crossovers
+is 7.
+
+The total number of crossovers for the whole graph would be the sum of the
+crossovers from each matrix realization.
+
+-------------------------------------------------------------------------------
+
+NODE CENTERING
+
+After the nodes for each row have their final sort order, the nodes need to
+be assigned to grid positions.  Their initial grid position will be their
+column position, by which we mean their array position in the row.  From now
+on, when we take a row or column barycenter, we will be using grid positions
+instead of column positions.
+
+Note:  The following examples will be based on centering children with respect
+to their parents' positions.  Centering parents based on their children's
+positions is analogous.
+
+When positioning the nodes on a row based on their parents' positions, the
+nodes must be initially sorted to see which nodes get first choice.  The dummy
+nodes go first, and the rest of nodes are sorted in descending order based on
+the number of parents the node has.  If a dummy node has a parent that has
+multiple dummy nodes, all of these dummy nodes are again sorted by how close
+to the center of the parent's children they are.  This is a confusing
+statement, best illustrated by example:
+
+            P1              P2
+             \              |
+               \  __________^__________
+                 \|    |    |    |    |
+                  C1   D1   D2   C2   D3
+
+Here, parent P1 has one child, C1.  Parent P2 has five children, and three of
+the child nodes are dummy nodes: D1, D2, and D3.  C1 is child 0 of P2, D1 is
+child 1 of P2, D2 is child 2 of P2, C2 is child 3 of P2, and D3 is child 4 of
+P2.  The child midpoint underneath the parent is equal to
+(the number of children - 1) / 2, so (5 - 1) / 2 = 2.  Since the dummy nodes
+go first, the initial order is D1, D2, D3, C1 (because it has 2 parents), and
+finally C2.  All of the dummy nodes have the same parent, so we will sort them
+based on how far away they are from the parent's child midpoint.  D1 is child
+1 of P2, so it is 1 away.  D2 is child 2 of P2, so it is 0 away.  D3 is child
+4 of P2, so it is 2 away.  Therefore, the final order for choosing positions
+is D2, D1, D3, C1, C2.
+
+In a situation similar to the dummy nodes, if a non-dummy node has a only one
+parent, and that parent has other children with just one parent, then these
+one parent child nodes that have the same parent need additional sorting in
+the exact same manner that we just did the dummy nodes.
+
+The whole purpose behind this is so that the left most node doesn't get first
+choice.  If it did, we would get graphs that look like:
+
+                 A                                     A
+                 |                                     |
+                 |_________       instead of      _____^_____
+                 |    |    |                      |    |    |
+                 B    C    D                      B    C    D
+
+Anyway, once we have a sort order for the nodes of a row, we place the nodes
+in their preferred positions.  Using the previous example, assume that P1
+is in grid position 2 and P2 is in grid position 5.  D2 gets first choice,
+and its column barycenter (based now on parent grid positions, not column
+positions) is 5, so we place D2 in position 5.  D1 is next, its barycenter
+is also 5.  We can't give it 5 since that position is occupied, so we give
+it the closest possible position we can, which in this case is 4.  D3 is next,
+and its barycenter is also 5.  The closest position that we can give it is
+position 7, since we must allow room for C2.  C1 is next, and its barycenter
+is (2 + 5)/2 = 3.5, which we round to 3.  Position 3 is open, so we go ahead
+and give it position 3.  C2 is last, and its barycenter is 5.  However, the
+first position available to it based on its left neighbor is position 6, so
+we assign it position 6.
+
+-------------------------------------------------------------------------------
+
+GOING 'UP' OR 'DOWN' THE GRAPH
+
+"Going down the graph" means taking each realization matrix situation,
+starting with Realization Matrix 0, and performing some action on it, then
+going to the next realization matrix, and continuing until all of the
+realization matrices have been visited.
+
+"Going up the graph" is analogous, except you start at the bottom with the
+last realization matrix and work up to Realization Matrix 0.
+
+/* End. */

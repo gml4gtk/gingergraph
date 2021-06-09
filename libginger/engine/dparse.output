@@ -1,0 +1,1349 @@
+State 40 conflicts: 3 shift/reduce
+State 45 conflicts: 1 shift/reduce
+State 64 conflicts: 4 shift/reduce
+State 66 conflicts: 3 shift/reduce
+State 87 conflicts: 4 shift/reduce
+
+
+Grammar
+
+    0 $accept: dot_graphstart $end
+
+    1 @1: /* empty */
+
+    2 dot_graphstart: @1 dot_graph
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin dot_graphleadin dot_graphidleadin '{' dot_stmt_list '}'
+
+    4 dot_utf8leadin: DOTLEX_UTF8LEADIN
+    5               | /* empty */
+
+    6 dot_strictleadin: DOTLEX_STRICT
+    7                 | /* empty */
+
+    8 dot_graphleadin: DOTLEX_GRAPH
+    9                | DOTLEX_DIGRAPH
+
+   10 dot_graphidleadin: dot_id
+   11                  | /* empty */
+
+   12 dot_stmt_list: dot_stmt_semi
+   13              | dot_stmt_list dot_stmt_semi
+
+   14 dot_stmt_semi: dot_stmt
+   15              | dot_stmt ';'
+
+   16 dot_stmt: dot_node_stmt
+   17         | dot_edge_stmt
+   18         | dot_attr_stmt
+   19         | dot_id_equal
+   20         | dot_subgraph
+
+   21 dot_node_stmt: dot_node_id dot_opt_attr_list
+
+   22 dot_edge_stmt: dot_node_or_subgraph dot_edge_rhs_list dot_opt_attr_list
+
+   23 dot_edge_rhs_list: dot_edge_rhs
+   24                  | dot_edge_rhs_list dot_edge_rhs
+
+   25 dot_edge_rhs: DOTLEX_DEDGE dot_node_or_subgraph
+   26             | DOTLEX_UEDGE dot_node_or_subgraph
+
+   27 dot_attr_stmt: DOTLEX_GRAPH dot_attr_list
+   28              | DOTLEX_NODE dot_attr_list
+   29              | DOTLEX_EDGE dot_attr_list
+
+   30 dot_id_equal: dot_id '=' dot_id
+
+   31 dot_subgraph: DOTLEX_SUBGRAPH dot_id '{' dot_stmt_list '}'
+   32             | DOTLEX_SUBGRAPH '{' dot_stmt_list '}'
+   33             | '{' dot_stmt_list '}'
+   34             | DOTLEX_SUBGRAPH dot_id
+
+   35 dot_node_or_subgraph: dot_node_id
+   36                     | dot_subgraph
+
+   37 dot_id: dot_ident
+   38       | dot_string
+   39       | dot_number_id
+
+   40 dot_ident: DOTLEX_IDENT
+
+   41 dot_string: dot_a_string
+   42           | dot_string '+' dot_a_string
+
+   43 dot_a_string: DOTLEX_STRING
+
+   44 dot_number_id: DOTLEX_NUMBER
+
+   45 dot_node_id: dot_id dot_opt_port
+
+   46 dot_opt_port: dot_port
+   47             | /* empty */
+
+   48 dot_port: dot_port_location
+   49         | dot_port_location dot_port_angle
+   50         | dot_port_angle dot_port_location
+   51         | dot_port_angle
+
+   52 dot_port_location: ':' dot_id
+   53                  | ':' '(' dot_id ',' dot_id ')'
+
+   54 dot_port_angle: '@' dot_id
+
+   55 dot_opt_attr_list: dot_attr_list
+   56                  | /* empty */
+
+   57 dot_attr_list: '[' dot_a_list ']'
+   58              | dot_attr_list '[' dot_a_list ']'
+
+   59 dot_a_list: dot_a_list_item
+   60           | dot_a_list dot_a_list_item
+
+   61 dot_a_list_item: dot_id '=' dot_id ','
+   62                | dot_id '=' dot_id
+   63                | dot_id ','
+   64                | dot_id
+   65                | /* empty */
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 53
+')' (41) 53
+'+' (43) 42
+',' (44) 53 61 63
+':' (58) 52 53
+';' (59) 15
+'=' (61) 30 61 62
+'@' (64) 54
+'[' (91) 57 58
+']' (93) 57 58
+'{' (123) 3 31 32 33
+'}' (125) 3 31 32 33
+error (256)
+DOTLEX_NODE (258) 28
+DOTLEX_EDGE (259) 29
+DOTLEX_GRAPH (260) 8 27
+DOTLEX_DIGRAPH (261) 9
+DOTLEX_SUBGRAPH (262) 31 32 34
+DOTLEX_STRICT (263) 6
+DOTLEX_DEDGE (264) 25
+DOTLEX_UEDGE (265) 26
+DOTLEX_UTF8LEADIN (266) 4
+DOTLEX_IDENT (267) 40
+DOTLEX_STRING (268) 43
+DOTLEX_NUMBER (269) 44
+DOTLEX_LLBRACE (270)
+
+
+Nonterminals, with rules where they appear
+
+$accept (28)
+    on left: 0
+dot_graphstart (29)
+    on left: 2, on right: 0
+@1 (30)
+    on left: 1, on right: 2
+dot_graph (31)
+    on left: 3, on right: 2
+dot_utf8leadin (32)
+    on left: 4 5, on right: 3
+dot_strictleadin (33)
+    on left: 6 7, on right: 3
+dot_graphleadin (34)
+    on left: 8 9, on right: 3
+dot_graphidleadin (35)
+    on left: 10 11, on right: 3
+dot_stmt_list (36)
+    on left: 12 13, on right: 3 13 31 32 33
+dot_stmt_semi (37)
+    on left: 14 15, on right: 12 13
+dot_stmt (38)
+    on left: 16 17 18 19 20, on right: 14 15
+dot_node_stmt (39)
+    on left: 21, on right: 16
+dot_edge_stmt (40)
+    on left: 22, on right: 17
+dot_edge_rhs_list (41)
+    on left: 23 24, on right: 22 24
+dot_edge_rhs (42)
+    on left: 25 26, on right: 23 24
+dot_attr_stmt (43)
+    on left: 27 28 29, on right: 18
+dot_id_equal (44)
+    on left: 30, on right: 19
+dot_subgraph (45)
+    on left: 31 32 33 34, on right: 20 36
+dot_node_or_subgraph (46)
+    on left: 35 36, on right: 22 25 26
+dot_id (47)
+    on left: 37 38 39, on right: 10 30 31 34 45 52 53 54 61 62 63 64
+dot_ident (48)
+    on left: 40, on right: 37
+dot_string (49)
+    on left: 41 42, on right: 38 42
+dot_a_string (50)
+    on left: 43, on right: 41 42
+dot_number_id (51)
+    on left: 44, on right: 39
+dot_node_id (52)
+    on left: 45, on right: 21 35
+dot_opt_port (53)
+    on left: 46 47, on right: 45
+dot_port (54)
+    on left: 48 49 50 51, on right: 46
+dot_port_location (55)
+    on left: 52 53, on right: 48 49 50
+dot_port_angle (56)
+    on left: 54, on right: 49 50 51
+dot_opt_attr_list (57)
+    on left: 55 56, on right: 21 22
+dot_attr_list (58)
+    on left: 57 58, on right: 27 28 29 55 58
+dot_a_list (59)
+    on left: 59 60, on right: 57 58 60
+dot_a_list_item (60)
+    on left: 61 62 63 64 65, on right: 59 60
+
+
+state 0
+
+    0 $accept: . dot_graphstart $end
+
+    $default  reduce using rule 1 (@1)
+
+    dot_graphstart  go to state 1
+    @1              go to state 2
+
+
+state 1
+
+    0 $accept: dot_graphstart . $end
+
+    $end  shift, and go to state 3
+
+
+state 2
+
+    2 dot_graphstart: @1 . dot_graph
+
+    DOTLEX_UTF8LEADIN  shift, and go to state 4
+
+    $default  reduce using rule 5 (dot_utf8leadin)
+
+    dot_graph       go to state 5
+    dot_utf8leadin  go to state 6
+
+
+state 3
+
+    0 $accept: dot_graphstart $end .
+
+    $default  accept
+
+
+state 4
+
+    4 dot_utf8leadin: DOTLEX_UTF8LEADIN .
+
+    $default  reduce using rule 4 (dot_utf8leadin)
+
+
+state 5
+
+    2 dot_graphstart: @1 dot_graph .
+
+    $default  reduce using rule 2 (dot_graphstart)
+
+
+state 6
+
+    3 dot_graph: dot_utf8leadin . dot_strictleadin dot_graphleadin dot_graphidleadin '{' dot_stmt_list '}'
+
+    DOTLEX_STRICT  shift, and go to state 7
+
+    $default  reduce using rule 7 (dot_strictleadin)
+
+    dot_strictleadin  go to state 8
+
+
+state 7
+
+    6 dot_strictleadin: DOTLEX_STRICT .
+
+    $default  reduce using rule 6 (dot_strictleadin)
+
+
+state 8
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin . dot_graphleadin dot_graphidleadin '{' dot_stmt_list '}'
+
+    DOTLEX_GRAPH    shift, and go to state 9
+    DOTLEX_DIGRAPH  shift, and go to state 10
+
+    dot_graphleadin  go to state 11
+
+
+state 9
+
+    8 dot_graphleadin: DOTLEX_GRAPH .
+
+    $default  reduce using rule 8 (dot_graphleadin)
+
+
+state 10
+
+    9 dot_graphleadin: DOTLEX_DIGRAPH .
+
+    $default  reduce using rule 9 (dot_graphleadin)
+
+
+state 11
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin dot_graphleadin . dot_graphidleadin '{' dot_stmt_list '}'
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    $default  reduce using rule 11 (dot_graphidleadin)
+
+    dot_graphidleadin  go to state 15
+    dot_id             go to state 16
+    dot_ident          go to state 17
+    dot_string         go to state 18
+    dot_a_string       go to state 19
+    dot_number_id      go to state 20
+
+
+state 12
+
+   40 dot_ident: DOTLEX_IDENT .
+
+    $default  reduce using rule 40 (dot_ident)
+
+
+state 13
+
+   43 dot_a_string: DOTLEX_STRING .
+
+    $default  reduce using rule 43 (dot_a_string)
+
+
+state 14
+
+   44 dot_number_id: DOTLEX_NUMBER .
+
+    $default  reduce using rule 44 (dot_number_id)
+
+
+state 15
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin dot_graphleadin dot_graphidleadin . '{' dot_stmt_list '}'
+
+    '{'  shift, and go to state 21
+
+
+state 16
+
+   10 dot_graphidleadin: dot_id .
+
+    $default  reduce using rule 10 (dot_graphidleadin)
+
+
+state 17
+
+   37 dot_id: dot_ident .
+
+    $default  reduce using rule 37 (dot_id)
+
+
+state 18
+
+   38 dot_id: dot_string .
+   42 dot_string: dot_string . '+' dot_a_string
+
+    '+'  shift, and go to state 22
+
+    $default  reduce using rule 38 (dot_id)
+
+
+state 19
+
+   41 dot_string: dot_a_string .
+
+    $default  reduce using rule 41 (dot_string)
+
+
+state 20
+
+   39 dot_id: dot_number_id .
+
+    $default  reduce using rule 39 (dot_id)
+
+
+state 21
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin dot_graphleadin dot_graphidleadin '{' . dot_stmt_list '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+
+    dot_stmt_list         go to state 28
+    dot_stmt_semi         go to state 29
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 22
+
+   42 dot_string: dot_string '+' . dot_a_string
+
+    DOTLEX_STRING  shift, and go to state 13
+
+    dot_a_string  go to state 39
+
+
+state 23
+
+   28 dot_attr_stmt: DOTLEX_NODE . dot_attr_list
+
+    '['  shift, and go to state 40
+
+    dot_attr_list  go to state 41
+
+
+state 24
+
+   29 dot_attr_stmt: DOTLEX_EDGE . dot_attr_list
+
+    '['  shift, and go to state 40
+
+    dot_attr_list  go to state 42
+
+
+state 25
+
+   27 dot_attr_stmt: DOTLEX_GRAPH . dot_attr_list
+
+    '['  shift, and go to state 40
+
+    dot_attr_list  go to state 43
+
+
+state 26
+
+   31 dot_subgraph: DOTLEX_SUBGRAPH . dot_id '{' dot_stmt_list '}'
+   32             | DOTLEX_SUBGRAPH . '{' dot_stmt_list '}'
+   34             | DOTLEX_SUBGRAPH . dot_id
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+    '{'            shift, and go to state 44
+
+    dot_id         go to state 45
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 27
+
+   33 dot_subgraph: '{' . dot_stmt_list '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+
+    dot_stmt_list         go to state 46
+    dot_stmt_semi         go to state 29
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 28
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin dot_graphleadin dot_graphidleadin '{' dot_stmt_list . '}'
+   13 dot_stmt_list: dot_stmt_list . dot_stmt_semi
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+    '}'              shift, and go to state 47
+
+    dot_stmt_semi         go to state 48
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 29
+
+   12 dot_stmt_list: dot_stmt_semi .
+
+    $default  reduce using rule 12 (dot_stmt_list)
+
+
+state 30
+
+   14 dot_stmt_semi: dot_stmt .
+   15              | dot_stmt . ';'
+
+    ';'  shift, and go to state 49
+
+    $default  reduce using rule 14 (dot_stmt_semi)
+
+
+state 31
+
+   16 dot_stmt: dot_node_stmt .
+
+    $default  reduce using rule 16 (dot_stmt)
+
+
+state 32
+
+   17 dot_stmt: dot_edge_stmt .
+
+    $default  reduce using rule 17 (dot_stmt)
+
+
+state 33
+
+   18 dot_stmt: dot_attr_stmt .
+
+    $default  reduce using rule 18 (dot_stmt)
+
+
+state 34
+
+   19 dot_stmt: dot_id_equal .
+
+    $default  reduce using rule 19 (dot_stmt)
+
+
+state 35
+
+   20 dot_stmt: dot_subgraph .
+   36 dot_node_or_subgraph: dot_subgraph .
+
+    DOTLEX_DEDGE  reduce using rule 36 (dot_node_or_subgraph)
+    DOTLEX_UEDGE  reduce using rule 36 (dot_node_or_subgraph)
+    $default      reduce using rule 20 (dot_stmt)
+
+
+state 36
+
+   22 dot_edge_stmt: dot_node_or_subgraph . dot_edge_rhs_list dot_opt_attr_list
+
+    DOTLEX_DEDGE  shift, and go to state 50
+    DOTLEX_UEDGE  shift, and go to state 51
+
+    dot_edge_rhs_list  go to state 52
+    dot_edge_rhs       go to state 53
+
+
+state 37
+
+   30 dot_id_equal: dot_id . '=' dot_id
+   45 dot_node_id: dot_id . dot_opt_port
+
+    '='  shift, and go to state 54
+    ':'  shift, and go to state 55
+    '@'  shift, and go to state 56
+
+    $default  reduce using rule 47 (dot_opt_port)
+
+    dot_opt_port       go to state 57
+    dot_port           go to state 58
+    dot_port_location  go to state 59
+    dot_port_angle     go to state 60
+
+
+state 38
+
+   21 dot_node_stmt: dot_node_id . dot_opt_attr_list
+   35 dot_node_or_subgraph: dot_node_id .
+
+    '['  shift, and go to state 40
+
+    DOTLEX_DEDGE  reduce using rule 35 (dot_node_or_subgraph)
+    DOTLEX_UEDGE  reduce using rule 35 (dot_node_or_subgraph)
+    $default      reduce using rule 56 (dot_opt_attr_list)
+
+    dot_opt_attr_list  go to state 61
+    dot_attr_list      go to state 62
+
+
+state 39
+
+   42 dot_string: dot_string '+' dot_a_string .
+
+    $default  reduce using rule 42 (dot_string)
+
+
+state 40
+
+   57 dot_attr_list: '[' . dot_a_list ']'
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    DOTLEX_IDENT   [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_STRING  [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_NUMBER  [reduce using rule 65 (dot_a_list_item)]
+    $default       reduce using rule 65 (dot_a_list_item)
+
+    dot_id           go to state 63
+    dot_ident        go to state 17
+    dot_string       go to state 18
+    dot_a_string     go to state 19
+    dot_number_id    go to state 20
+    dot_a_list       go to state 64
+    dot_a_list_item  go to state 65
+
+
+state 41
+
+   28 dot_attr_stmt: DOTLEX_NODE dot_attr_list .
+   58 dot_attr_list: dot_attr_list . '[' dot_a_list ']'
+
+    '['  shift, and go to state 66
+
+    $default  reduce using rule 28 (dot_attr_stmt)
+
+
+state 42
+
+   29 dot_attr_stmt: DOTLEX_EDGE dot_attr_list .
+   58 dot_attr_list: dot_attr_list . '[' dot_a_list ']'
+
+    '['  shift, and go to state 66
+
+    $default  reduce using rule 29 (dot_attr_stmt)
+
+
+state 43
+
+   27 dot_attr_stmt: DOTLEX_GRAPH dot_attr_list .
+   58 dot_attr_list: dot_attr_list . '[' dot_a_list ']'
+
+    '['  shift, and go to state 66
+
+    $default  reduce using rule 27 (dot_attr_stmt)
+
+
+state 44
+
+   32 dot_subgraph: DOTLEX_SUBGRAPH '{' . dot_stmt_list '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+
+    dot_stmt_list         go to state 67
+    dot_stmt_semi         go to state 29
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 45
+
+   31 dot_subgraph: DOTLEX_SUBGRAPH dot_id . '{' dot_stmt_list '}'
+   34             | DOTLEX_SUBGRAPH dot_id .
+
+    '{'  shift, and go to state 68
+
+    '{'       [reduce using rule 34 (dot_subgraph)]
+    $default  reduce using rule 34 (dot_subgraph)
+
+
+state 46
+
+   13 dot_stmt_list: dot_stmt_list . dot_stmt_semi
+   33 dot_subgraph: '{' dot_stmt_list . '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+    '}'              shift, and go to state 69
+
+    dot_stmt_semi         go to state 48
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 47
+
+    3 dot_graph: dot_utf8leadin dot_strictleadin dot_graphleadin dot_graphidleadin '{' dot_stmt_list '}' .
+
+    $default  reduce using rule 3 (dot_graph)
+
+
+state 48
+
+   13 dot_stmt_list: dot_stmt_list dot_stmt_semi .
+
+    $default  reduce using rule 13 (dot_stmt_list)
+
+
+state 49
+
+   15 dot_stmt_semi: dot_stmt ';' .
+
+    $default  reduce using rule 15 (dot_stmt_semi)
+
+
+state 50
+
+   25 dot_edge_rhs: DOTLEX_DEDGE . dot_node_or_subgraph
+
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+
+    dot_subgraph          go to state 70
+    dot_node_or_subgraph  go to state 71
+    dot_id                go to state 72
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 73
+
+
+state 51
+
+   26 dot_edge_rhs: DOTLEX_UEDGE . dot_node_or_subgraph
+
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+
+    dot_subgraph          go to state 70
+    dot_node_or_subgraph  go to state 74
+    dot_id                go to state 72
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 73
+
+
+state 52
+
+   22 dot_edge_stmt: dot_node_or_subgraph dot_edge_rhs_list . dot_opt_attr_list
+   24 dot_edge_rhs_list: dot_edge_rhs_list . dot_edge_rhs
+
+    DOTLEX_DEDGE  shift, and go to state 50
+    DOTLEX_UEDGE  shift, and go to state 51
+    '['           shift, and go to state 40
+
+    $default  reduce using rule 56 (dot_opt_attr_list)
+
+    dot_edge_rhs       go to state 75
+    dot_opt_attr_list  go to state 76
+    dot_attr_list      go to state 62
+
+
+state 53
+
+   23 dot_edge_rhs_list: dot_edge_rhs .
+
+    $default  reduce using rule 23 (dot_edge_rhs_list)
+
+
+state 54
+
+   30 dot_id_equal: dot_id '=' . dot_id
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    dot_id         go to state 77
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 55
+
+   52 dot_port_location: ':' . dot_id
+   53                  | ':' . '(' dot_id ',' dot_id ')'
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+    '('            shift, and go to state 78
+
+    dot_id         go to state 79
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 56
+
+   54 dot_port_angle: '@' . dot_id
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    dot_id         go to state 80
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 57
+
+   45 dot_node_id: dot_id dot_opt_port .
+
+    $default  reduce using rule 45 (dot_node_id)
+
+
+state 58
+
+   46 dot_opt_port: dot_port .
+
+    $default  reduce using rule 46 (dot_opt_port)
+
+
+state 59
+
+   48 dot_port: dot_port_location .
+   49         | dot_port_location . dot_port_angle
+
+    '@'  shift, and go to state 56
+
+    $default  reduce using rule 48 (dot_port)
+
+    dot_port_angle  go to state 81
+
+
+state 60
+
+   50 dot_port: dot_port_angle . dot_port_location
+   51         | dot_port_angle .
+
+    ':'  shift, and go to state 55
+
+    $default  reduce using rule 51 (dot_port)
+
+    dot_port_location  go to state 82
+
+
+state 61
+
+   21 dot_node_stmt: dot_node_id dot_opt_attr_list .
+
+    $default  reduce using rule 21 (dot_node_stmt)
+
+
+state 62
+
+   55 dot_opt_attr_list: dot_attr_list .
+   58 dot_attr_list: dot_attr_list . '[' dot_a_list ']'
+
+    '['  shift, and go to state 66
+
+    $default  reduce using rule 55 (dot_opt_attr_list)
+
+
+state 63
+
+   61 dot_a_list_item: dot_id . '=' dot_id ','
+   62                | dot_id . '=' dot_id
+   63                | dot_id . ','
+   64                | dot_id .
+
+    '='  shift, and go to state 83
+    ','  shift, and go to state 84
+
+    $default  reduce using rule 64 (dot_a_list_item)
+
+
+state 64
+
+   57 dot_attr_list: '[' dot_a_list . ']'
+   60 dot_a_list: dot_a_list . dot_a_list_item
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+    ']'            shift, and go to state 85
+
+    DOTLEX_IDENT   [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_STRING  [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_NUMBER  [reduce using rule 65 (dot_a_list_item)]
+    ']'            [reduce using rule 65 (dot_a_list_item)]
+
+    dot_id           go to state 63
+    dot_ident        go to state 17
+    dot_string       go to state 18
+    dot_a_string     go to state 19
+    dot_number_id    go to state 20
+    dot_a_list_item  go to state 86
+
+
+state 65
+
+   59 dot_a_list: dot_a_list_item .
+
+    $default  reduce using rule 59 (dot_a_list)
+
+
+state 66
+
+   58 dot_attr_list: dot_attr_list '[' . dot_a_list ']'
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    DOTLEX_IDENT   [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_STRING  [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_NUMBER  [reduce using rule 65 (dot_a_list_item)]
+    $default       reduce using rule 65 (dot_a_list_item)
+
+    dot_id           go to state 63
+    dot_ident        go to state 17
+    dot_string       go to state 18
+    dot_a_string     go to state 19
+    dot_number_id    go to state 20
+    dot_a_list       go to state 87
+    dot_a_list_item  go to state 65
+
+
+state 67
+
+   13 dot_stmt_list: dot_stmt_list . dot_stmt_semi
+   32 dot_subgraph: DOTLEX_SUBGRAPH '{' dot_stmt_list . '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+    '}'              shift, and go to state 88
+
+    dot_stmt_semi         go to state 48
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 68
+
+   31 dot_subgraph: DOTLEX_SUBGRAPH dot_id '{' . dot_stmt_list '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+
+    dot_stmt_list         go to state 89
+    dot_stmt_semi         go to state 29
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 69
+
+   33 dot_subgraph: '{' dot_stmt_list '}' .
+
+    $default  reduce using rule 33 (dot_subgraph)
+
+
+state 70
+
+   36 dot_node_or_subgraph: dot_subgraph .
+
+    $default  reduce using rule 36 (dot_node_or_subgraph)
+
+
+state 71
+
+   25 dot_edge_rhs: DOTLEX_DEDGE dot_node_or_subgraph .
+
+    $default  reduce using rule 25 (dot_edge_rhs)
+
+
+state 72
+
+   45 dot_node_id: dot_id . dot_opt_port
+
+    ':'  shift, and go to state 55
+    '@'  shift, and go to state 56
+
+    $default  reduce using rule 47 (dot_opt_port)
+
+    dot_opt_port       go to state 57
+    dot_port           go to state 58
+    dot_port_location  go to state 59
+    dot_port_angle     go to state 60
+
+
+state 73
+
+   35 dot_node_or_subgraph: dot_node_id .
+
+    $default  reduce using rule 35 (dot_node_or_subgraph)
+
+
+state 74
+
+   26 dot_edge_rhs: DOTLEX_UEDGE dot_node_or_subgraph .
+
+    $default  reduce using rule 26 (dot_edge_rhs)
+
+
+state 75
+
+   24 dot_edge_rhs_list: dot_edge_rhs_list dot_edge_rhs .
+
+    $default  reduce using rule 24 (dot_edge_rhs_list)
+
+
+state 76
+
+   22 dot_edge_stmt: dot_node_or_subgraph dot_edge_rhs_list dot_opt_attr_list .
+
+    $default  reduce using rule 22 (dot_edge_stmt)
+
+
+state 77
+
+   30 dot_id_equal: dot_id '=' dot_id .
+
+    $default  reduce using rule 30 (dot_id_equal)
+
+
+state 78
+
+   53 dot_port_location: ':' '(' . dot_id ',' dot_id ')'
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    dot_id         go to state 90
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 79
+
+   52 dot_port_location: ':' dot_id .
+
+    $default  reduce using rule 52 (dot_port_location)
+
+
+state 80
+
+   54 dot_port_angle: '@' dot_id .
+
+    $default  reduce using rule 54 (dot_port_angle)
+
+
+state 81
+
+   49 dot_port: dot_port_location dot_port_angle .
+
+    $default  reduce using rule 49 (dot_port)
+
+
+state 82
+
+   50 dot_port: dot_port_angle dot_port_location .
+
+    $default  reduce using rule 50 (dot_port)
+
+
+state 83
+
+   61 dot_a_list_item: dot_id '=' . dot_id ','
+   62                | dot_id '=' . dot_id
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    dot_id         go to state 91
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 84
+
+   63 dot_a_list_item: dot_id ',' .
+
+    $default  reduce using rule 63 (dot_a_list_item)
+
+
+state 85
+
+   57 dot_attr_list: '[' dot_a_list ']' .
+
+    $default  reduce using rule 57 (dot_attr_list)
+
+
+state 86
+
+   60 dot_a_list: dot_a_list dot_a_list_item .
+
+    $default  reduce using rule 60 (dot_a_list)
+
+
+state 87
+
+   58 dot_attr_list: dot_attr_list '[' dot_a_list . ']'
+   60 dot_a_list: dot_a_list . dot_a_list_item
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+    ']'            shift, and go to state 92
+
+    DOTLEX_IDENT   [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_STRING  [reduce using rule 65 (dot_a_list_item)]
+    DOTLEX_NUMBER  [reduce using rule 65 (dot_a_list_item)]
+    ']'            [reduce using rule 65 (dot_a_list_item)]
+
+    dot_id           go to state 63
+    dot_ident        go to state 17
+    dot_string       go to state 18
+    dot_a_string     go to state 19
+    dot_number_id    go to state 20
+    dot_a_list_item  go to state 86
+
+
+state 88
+
+   32 dot_subgraph: DOTLEX_SUBGRAPH '{' dot_stmt_list '}' .
+
+    $default  reduce using rule 32 (dot_subgraph)
+
+
+state 89
+
+   13 dot_stmt_list: dot_stmt_list . dot_stmt_semi
+   31 dot_subgraph: DOTLEX_SUBGRAPH dot_id '{' dot_stmt_list . '}'
+
+    DOTLEX_NODE      shift, and go to state 23
+    DOTLEX_EDGE      shift, and go to state 24
+    DOTLEX_GRAPH     shift, and go to state 25
+    DOTLEX_SUBGRAPH  shift, and go to state 26
+    DOTLEX_IDENT     shift, and go to state 12
+    DOTLEX_STRING    shift, and go to state 13
+    DOTLEX_NUMBER    shift, and go to state 14
+    '{'              shift, and go to state 27
+    '}'              shift, and go to state 93
+
+    dot_stmt_semi         go to state 48
+    dot_stmt              go to state 30
+    dot_node_stmt         go to state 31
+    dot_edge_stmt         go to state 32
+    dot_attr_stmt         go to state 33
+    dot_id_equal          go to state 34
+    dot_subgraph          go to state 35
+    dot_node_or_subgraph  go to state 36
+    dot_id                go to state 37
+    dot_ident             go to state 17
+    dot_string            go to state 18
+    dot_a_string          go to state 19
+    dot_number_id         go to state 20
+    dot_node_id           go to state 38
+
+
+state 90
+
+   53 dot_port_location: ':' '(' dot_id . ',' dot_id ')'
+
+    ','  shift, and go to state 94
+
+
+state 91
+
+   61 dot_a_list_item: dot_id '=' dot_id . ','
+   62                | dot_id '=' dot_id .
+
+    ','  shift, and go to state 95
+
+    $default  reduce using rule 62 (dot_a_list_item)
+
+
+state 92
+
+   58 dot_attr_list: dot_attr_list '[' dot_a_list ']' .
+
+    $default  reduce using rule 58 (dot_attr_list)
+
+
+state 93
+
+   31 dot_subgraph: DOTLEX_SUBGRAPH dot_id '{' dot_stmt_list '}' .
+
+    $default  reduce using rule 31 (dot_subgraph)
+
+
+state 94
+
+   53 dot_port_location: ':' '(' dot_id ',' . dot_id ')'
+
+    DOTLEX_IDENT   shift, and go to state 12
+    DOTLEX_STRING  shift, and go to state 13
+    DOTLEX_NUMBER  shift, and go to state 14
+
+    dot_id         go to state 96
+    dot_ident      go to state 17
+    dot_string     go to state 18
+    dot_a_string   go to state 19
+    dot_number_id  go to state 20
+
+
+state 95
+
+   61 dot_a_list_item: dot_id '=' dot_id ',' .
+
+    $default  reduce using rule 61 (dot_a_list_item)
+
+
+state 96
+
+   53 dot_port_location: ':' '(' dot_id ',' dot_id . ')'
+
+    ')'  shift, and go to state 97
+
+
+state 97
+
+   53 dot_port_location: ':' '(' dot_id ',' dot_id ')' .
+
+    $default  reduce using rule 53 (dot_port_location)

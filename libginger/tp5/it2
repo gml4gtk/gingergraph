@@ -1,0 +1,2 @@
+#!/bin/sh
+valgrind -v --leak-check=full --show-reachable=yes ./tp5

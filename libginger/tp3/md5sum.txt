@@ -1,0 +1,8 @@
+d46272c95aab17dacae2a8bb6a1ae96e  ./main.c
+e6e884ea284421f579cf5557f9c3a5e7  ./Makefile.tp3
+66b3af2f720d6536602a1d4e8c26fdfd  ./input.txt
+ad8de957590d8907755d3dfa45f06f07  ./md5sum.txt
+90175aed9644c87f30fe6dab8af6db6d  ./test.gif
+8ba437033ba09ff705f82417998ce1d2  ./test.svg
+cc44b52a4a8b901bc74f8c789ffe548a  ./it1
+42842bc5215198387fd4f8225736e8b7  ./it2

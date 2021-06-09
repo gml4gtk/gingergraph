@@ -1,0 +1,324 @@
+(node graphBuffer.c
+  label "graphBuffer.c"
+  bg_color "thistle"
+  x 108  y 298
+  width 79  height 20
+)
+(node fileSelector.h
+  label "fileSelector.h"
+  bg_color "lemonchiffon"
+  x 268  y 98
+  width 77  height 20
+)
+(node graphBuffer.h
+  label "graphBuffer.h"
+  bg_color "lemonchiffon"
+  x 268  y 148
+  width 80  height 20
+)
+(node graphDisplay.h
+  label "graphDisplay.h"
+  bg_color "lemonchiffon"
+  x 268  y 448
+  width 89  height 20
+)
+(node graphIO.h
+  label "graphIO.h"
+  bg_color "lemonchiffon"
+  x 268  y 498
+  width 60  height 20
+)
+(node mainWindow.h
+  label "mainWindow.h"
+  bg_color "lemonchiffon"
+  x 268  y 198
+  width 87  height 20
+)
+(node message.h
+  label "message.h"
+  bg_color "lemonchiffon"
+  x 268  y 248
+  width 66  height 20
+)
+(node PostScript.h
+  label "PostScript.h"
+  bg_color "lemonchiffon"
+  x 268  y 298
+  width 71  height 20
+)
+(node notify.h
+  label "notify.h"
+  bg_color "lemonchiffon"
+  x 268  y 348
+  width 45  height 20
+)
+(node actions.h
+  label "actions.h"
+  bg_color "lemonchiffon"
+  x 268  y 398
+  width 55  height 20
+)
+(node graphDisplay.c
+  label "graphDisplay.c"
+  bg_color "thistle"
+  x 108  y 498
+  width 88  height 20
+)
+(node rectangles.h
+  label "rectangles.h"
+  bg_color "lemonchiffon"
+  x 268  y 548
+  width 73  height 20
+)
+(node graphIO.c
+  label "graphIO.c"
+  bg_color "thistle"
+  x 108  y 548
+  width 59  height 20
+)
+(node parser.h
+  label "parser.h"
+  bg_color "lemonchiffon"
+  x 268  y 598
+  width 51  height 20
+)
+(node node.c
+  label "node.c"
+  bg_color "thistle"
+  x 434  y 198
+  width 43  height 20
+)
+(node colormap.h
+  label "colormap.h"
+  bg_color "lemonchiffon"
+  x 594  y 198
+  width 67  height 20
+)
+(node str.h
+  label "str.h"
+  bg_color "lemonchiffon"
+  x 594  y 148
+  width 29  height 20
+)
+(node node.h
+  label "node.h"
+  bg_color "lemonchiffon"
+  x 594  y 248
+  width 44  height 20
+)
+(node edge.h
+  label "edge.h"
+  bg_color "lemonchiffon"
+  x 594  y 298
+  width 44  height 20
+)
+(node edge.c
+  label "edge.c"
+  bg_color "thistle"
+  x 434  y 248
+  width 43  height 20
+)
+(node mathMacros.h
+  label "mathMacros.h"
+  bg_color "lemonchiffon"
+  x 754  y 348
+  width 83  height 20
+)
+(node graph.c
+  label "graph.c"
+  bg_color "thistle"
+  x 268  y 48
+  width 47  height 20
+)
+(node graph.h
+  label "graph.h"
+  bg_color "lemonchiffon"
+  x 434  y 298
+  width 48  height 20
+)
+(node config.h
+  label "config.h"
+  bg_color "lemonchiffon"
+  x 754  y 199
+  width 49  height 20
+)
+(node gingerNew.h
+  label "gingerNew.h"
+  bg_color "lemonchiffon"
+  x 754  y 248
+  width 76  height 20
+)
+(node color.h
+  label "color.h"
+  bg_color "lemonchiffon"
+  x 754  y 298
+  width 43  height 20
+)
+(node clist.h
+  label "clist.h"
+  bg_color "lemonchiffon"
+  x 594  y 348
+  width 37  height 20
+)
+(node allocmem.h
+  label "allocmem.h"
+  bg_color "lemonchiffon"
+  x 906  y 248
+  width 69  height 20
+)
+(edge graphBuffer.c_fileSelector.h
+  from graphBuffer.c to fileSelector.h
+  color "black"
+)
+(edge graphBuffer.c_graphBuffer.h
+  from graphBuffer.c to graphBuffer.h
+  color "black"
+)
+(edge graphBuffer.c_graphDisplay.h
+  from graphBuffer.c to graphDisplay.h
+  color "black"
+)
+(edge graphBuffer.c_graphIO.h
+  from graphBuffer.c to graphIO.h
+  color "black"
+)
+(edge graphBuffer.c_mainWindow.h
+  from graphBuffer.c to mainWindow.h
+  color "black"
+)
+(edge graphBuffer.c_message.h
+  from graphBuffer.c to message.h
+  color "black"
+)
+(edge graphBuffer.c_PostScript.h
+  from graphBuffer.c to PostScript.h
+  color "black"
+)
+(edge graphBuffer.c_notify.h
+  from graphBuffer.c to notify.h
+  color "black"
+)
+(edge graphBuffer.c_actions.h
+  from graphBuffer.c to actions.h
+  color "black"
+)
+(edge graphDisplay.c_graphDisplay.h
+  from graphDisplay.c to graphDisplay.h
+  color "black"
+)
+(edge graphDisplay.c_rectangles.h
+  from graphDisplay.c to rectangles.h
+  color "black"
+)
+(edge graphIO.c_graphIO.h
+  from graphIO.c to graphIO.h
+  color "black"
+)
+(edge graphIO.c_parser.h
+  from graphIO.c to parser.h
+  color "black"
+)
+(edge node.c_colormap.h
+  from node.c to colormap.h
+  color "black"
+)
+(edge node.c_str.h
+  from node.c to str.h
+  color "black"
+)
+(edge node.c_node.h
+  from node.c to node.h
+  color "black"
+)
+(edge node.c_edge.h
+  from node.c to edge.h
+  color "black"
+)
+(edge edge.c_edge.h
+  from edge.c to edge.h
+  color "black"
+)
+(edge edge.c_node.h
+  from edge.c to node.h
+  color "black"
+)
+(edge edge.c_mathMacros.h
+  from edge.c to mathMacros.h
+  color "black"
+)
+(edge edge.c_colormap.h
+  from edge.c to colormap.h
+  color "black"
+)
+(edge graph.c_graph.h
+  from graph.c to graph.h
+  color "black"
+)
+(edge node.h_config.h
+  from node.h to config.h
+  color "black"
+)
+(edge node.h_gingerNew.h
+  from node.h to gingerNew.h
+  color "black"
+)
+(edge node.h_color.h
+  from node.h to color.h
+  color "black"
+)
+(edge edge.h_gingerNew.h
+  from edge.h to gingerNew.h
+  color "black"
+)
+(edge edge.h_mathMacros.h
+  from edge.h to mathMacros.h
+  color "black"
+)
+(edge edge.h_color.h
+  from edge.h to color.h
+  color "black"
+)
+(edge edge.h_node.h
+  from edge.h to node.h
+  color "black"
+)
+(edge graph.h_node.h
+  from graph.h to node.h
+  color "black"
+)
+(edge graph.h_edge.h
+  from graph.h to edge.h
+  color "black"
+)
+(edge graph.h_clist.h
+  from graph.h to clist.h
+  color "black"
+)
+(edge graphBuffer.h_graph.h
+  from graphBuffer.h to graph.h
+  color "black"
+)
+(edge graphDisplay.h_graph.h
+  from graphDisplay.h to graph.h
+  color "black"
+)
+(edge PostScript.h_graph.h
+  from PostScript.h to graph.h
+  color "black"
+)
+(edge graphIO.h_graph.h
+  from graphIO.h to graph.h
+  color "black"
+)
+(edge parser.h_graph.h
+  from parser.h to graph.h
+  color "black"
+)
+(edge gingerNew.h_config.h
+  from gingerNew.h to config.h
+  color "black"
+)
+(edge gingerNew.h_allocmem.h
+  from gingerNew.h to allocmem.h
+  color "black"
+)

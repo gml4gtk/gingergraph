@@ -1,0 +1,20 @@
+.TH Ginger 1 
+.SH NAME
+Ginger \- INteractive Graph EditoR
+
+.SH DESCRIPTION
+
+An INteractive Graph EditoR for the X Window System.
+
+Its goal is to develop an easy-to-use yet powerful tool for 
+interactive editing of various types of graphs. It allows you 
+to select, create, edit, and delete nodes and edges. 
+
+It has circular layouts and layouts for tree-like graphs, which 
+can be adjusted manually.
+
+.SH Author
+Niels C. Larsen
+
+.SH SEE ALSO
+http://www.iesd.auc.dk/~normark/Ginger/ginger.html
